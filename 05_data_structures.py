@@ -48,4 +48,70 @@ queue.popleft()           # The second to arrive now leaves (John)
 print(queue)              # The remaining queue in order of arrival
 print()
 
-# List Comprehensions
+# 5.1.3List Comprehensions
+# For example, assume we want to create a list of squares, like:
+squares = []
+for x in range(10):
+    squares.append(x**2)
+
+print(squares)
+# Note that this creates (or overwrites) a variable named x that still exists after the loop completes.
+print(x)
+print()
+squares = []
+x = "No longer exists"
+#We can calculate the list of squares without any side effects using:
+squares = list(map(lambda x: x**2, range(10)))
+print(squares)
+print(x)
+print()
+squares = []
+# Here is something that is equivalent, but more concise and readable:
+squares = [x**2 for x in range(10)]
+print(squares)
+print(x)
+print()
+"""
+    A list comprehension consists of brackets containing an expression followed by a for clause, then zero or more for or if clauses. The result will be a new list resulting from evaluating the expression in the context of the for and if clauses which follow it.
+"""
+# For example, this listcomp combines the elements of two lists if they are not equal:
+my_listcomp = [(x, y) for x in [1,2,3] for y in [3,1,4] if x != y]
+print(my_listcomp)
+# It's equivalent to:
+combs = []
+for x in [1,2,3]:
+    for y in [3,1,4]:
+        if x != y:
+            combs.append((x, y))
+
+print(combs)
+print()
+# Note how the order of the for and if statements is the same in both of the above code snippets.
+# If the expression is a tuple (e.g. the (x,y) in the previous example), it must be parenthesized:
+vec = [-4, -2, 0, 2, 4]
+print(vec)
+double = [x*2 for x in vec]  # create a new list with the values doubled
+print(double)
+no_negative = [x for x in vec if x >= 0]  # filter the list to exclude negative numbers
+print(no_negative)
+my_func = [abs(x) for x in vec]  # apply a function to all of the elements
+print(my_func)
+# Call a method on each element:
+freshfruit = ['  banana', '  loganberry', 'passion fruit']
+print(freshfruit)
+print([weapon.strip() for weapon in freshfruit])
+# Create a list of 2-tuples like (number, square)
+two_tup = [(x, x**2) for x in range(6)]
+print(two_tup)
+# [x, x**2 for x in range(6)] will throw a SyntaxError
+# Flatten a list using a listcomp with two 'for' clauses:
+vec = [[1,2,3], [4,5,6], [7,8,9]]
+print([num for elem in vec for num in elem])
+print()
+
+# List comprehensions can contain complex expressions and nested functions:
+from math import pi
+my_exp = [str(round(pi, i)) for i in range(1, 6)]
+print(my_exp)
+
+# 5.1.4 Nested List Comprehensions
