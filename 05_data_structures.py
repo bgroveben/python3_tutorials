@@ -48,7 +48,8 @@ queue.popleft()           # The second to arrive now leaves (John)
 print(queue)              # The remaining queue in order of arrival
 print()
 
-# 5.1.3List Comprehensions
+
+# 5.1.3 List Comprehensions
 # For example, assume we want to create a list of squares, like:
 squares = []
 for x in range(10):
@@ -113,5 +114,45 @@ print()
 from math import pi
 my_exp = [str(round(pi, i)) for i in range(1, 6)]
 print(my_exp)
+print()
+
 
 # 5.1.4 Nested List Comprehensions
+
+# The initial expression in a list comprehension can be any arbitrary expression, including another list comprehension.
+# Consider the following example of a 3x4 matrix implemented as a list of three lists of length 4:
+matrix = [
+    [1,2,3,4],
+    [5,6,7,8],
+    [9,10,11,12],
+]
+print(matrix)
+# The following list comprehension will transpose rows and columns:
+transpose = [[row[i] for row in matrix] for i in range(4)]
+print(transpose)
+# As we saw in the previous section, the nested listcomp is evaluated in the context of the for that follows it,
+# so the example above is equivalent to:
+transposed = []
+for i in range(4):
+    transposed.append([row[i] for row in matrix])
+
+print(transposed)
+# The above example is, in turn, the same as:
+transposed = []
+for i in range(4):
+    # the following 3 lines implement the nested listcomp
+    transposed_row = []
+    for row in matrix:
+        transposed_row.append(row[i])
+    transposed.append(transposed_row)
+
+print(transposed)
+# In the real world, you should prefer built-in functions to complex flow statements.
+# The zip() function would do a grat job for this use case:
+transposed = list(zip(*matrix))  # call with arguments unpacked from a list
+print(transposed)
+# What's with asterisk before matrix? See Unpacking Argument Lists.
+print()
+
+
+# 5.2. The del statement
