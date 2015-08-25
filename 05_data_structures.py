@@ -156,3 +156,61 @@ print()
 
 
 # 5.2. The del statement
+
+# Use the del statement to remove an item from a list given its index instead of its value.
+a = [-1, 1, 66.25, 333, 333, 1234.5]
+print(a)
+del a[0]
+print(a)
+del a[2:4]
+print(a)
+del a[:]
+print(a)
+# del can also be used to delete entire variables:
+del a
+# print(a)  # NameError: name 'a' is not defined
+print()
+
+
+# 5.3. Tuples and Sequences
+
+# Tuples, like lists and strings, are another example of standard sequence data types.
+# A tuple consists of a number of values separated by commas, for instance:
+t = 12345, 54321, 'hello!'
+print(t[0])
+print(t)
+# Tuples may be nested:
+u = t, (1, 2, 3, 4, 5)
+print(u)
+# Tuples are immutable:
+# t[0] = 88888  # TypeError: 'tuple' object does not support item assignment
+# but they can comtain mutable objects:
+v = ([1, 2, 3], [3, 2, 1])
+print(v)
+print()
+# On output, tuples are always enclosed in parentheses, so that nested tuples are interpreted correctly.
+
+# A special problem is the construction of tuples containing 0 or 1 items.
+# Empty tuples are constructed by an empty pair of parentheses.
+# A tuple with one item is constructed by following a value with a comma (instead of enclosing a single value in parentheses).
+empty = ()
+singleton = 'hello',  # <-- note the trailing comma
+print(len(empty))
+print(len(singleton))
+print(singleton)
+print()
+
+# The statement  t = 12345, 54321, 'hello!'  is an example of tuple packing.
+# The values 12345, 54321, and 'hello!' are packed together in a tuple.
+# The reverse operation is also possible:
+x, y, z = t
+print(x)
+print(y)
+print(z)
+# This is called sequence unpacking and works for any sequence on the right-hand side.
+# Sequence unpacking requires that there are as many variables on the left side as there are elements in the sequence.
+# x, y = t  # ValueError: too many values to unpack (expected 2)
+# Multiple assignment is really just a combination of tuple packing and sequence unpacking.
+
+
+# 5.4. Sets
