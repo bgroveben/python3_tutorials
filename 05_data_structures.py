@@ -207,6 +207,7 @@ x, y, z = t
 print(x)
 print(y)
 print(z)
+print()
 # This is called sequence unpacking and works for any sequence on the right-hand side.
 # Sequence unpacking requires that there are as many variables on the left side as there are elements in the sequence.
 # x, y = t  # ValueError: too many values to unpack (expected 2)
@@ -214,3 +215,31 @@ print(z)
 
 
 # 5.4. Sets
+
+# A set is an unordered collection with no duplicate elements.
+# Curly braces or the set() function can be used to create sets.
+# To create an empty set you must use set(), not set{}; the latter creates an empty dictionary.
+basket = {'apple', 'orange', 'apple', 'pear', 'orange', 'banana'}
+print(basket)   # the duplicates have been removed
+print('orange' in basket)   # membership testing
+print('tomato' in basket)
+print()
+
+# Demonstrate set operations on unique letters from two words:
+a = set('abracadabra')
+b = set('alacazam')
+print(a)   # unique letters in a
+print(a - b)   # letters in a but not in b
+print(a | b)   # letters in either a or b
+print(a & b)   # letters in both a and b
+print(a ^ b)   # letters in a or b but not both
+print()
+
+# Similarly to list comprehensions, set comprehensions are also supported:
+a = {x for x in 'abracadabra' if x not in 'abc'}
+print(a)
+
+
+# 5.5. Dictionaries
+
+print()
