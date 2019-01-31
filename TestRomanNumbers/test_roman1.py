@@ -60,3 +60,15 @@ class KnownValues(unittest.TestCase):
                     (3888, 'MMMDCCCLXXXVIII'),
                     (3940, 'MMMCMXL'),
                     (3999, 'MMMCMXCIX'))
+
+    def test_to_roman_known_values(self):
+        """
+        to_roman() should give the known result corresponding to the input.
+        """
+        for integer, numeral in self.known_values:
+            result = roman1.to_roman(integer)
+            self.assertEqual(numeral, result)
+
+
+if __name__ == '__main__':
+    unittest.main()
