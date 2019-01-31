@@ -1,6 +1,3 @@
-The Python Tutorial from https://docs.python.org/3.5/tutorial/index.html.
+# Python 3 tutorials, projects, and playthings  
 
-I'm using Python 3.5.1
-
-I am here:  
-[Looping Techniques](https://docs.python.org/3.5/tutorial/datastructures.html#looping-techniques)
+The RomanNumbers TDD exercise is from [Dive into Python 3](http://histo.ucsf.edu/BMS270/diveintopython3-r802.pdf#page=211).
