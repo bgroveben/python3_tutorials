@@ -17,9 +17,10 @@ def to_roman(n):
     """
     Convert an integer to a Roman number.
     """
-    if n > 3999:
+    # Numbers can't be less than 1 or greater than 3999
+    if not(0 < n < 4000):
         raise OutOfRangeError("The number must be less than 4000")
-        
+
     result = ""
     for numeral, integer in roman_numeral_map:
         while n >= integer:
