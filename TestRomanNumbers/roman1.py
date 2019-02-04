@@ -19,7 +19,10 @@ def to_roman(n):
     """
     # Numbers can't be less than 1 or greater than 3999
     if not(0 < n < 4000):
-        raise OutOfRangeError("The number must be less than 4000")
+        raise OutOfRangeError("The number must be positive and less than 4000")
+
+    if not isinstance(n, int):
+        raise NotIntegerError("Only whole numbers are allowed")
 
     result = ""
     for numeral, integer in roman_numeral_map:
@@ -29,7 +32,3 @@ def to_roman(n):
             # The next line prints out each step of the translation:
             print('subtracting {0} from input, adding {1} to output'.format(integer, numeral))
     return result
-
-
-class OutOfRangeError(ValueError):
-    pass
