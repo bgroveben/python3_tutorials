@@ -32,3 +32,9 @@ def to_roman(n):
             # The next line prints out each step of the translation:
             print('subtracting {0} from input, adding {1} to output'.format(integer, numeral))
     return result
+
+def from_roman():
+    """
+    Convert a string from a Roman numeral to an integer.
+    """
+    pass

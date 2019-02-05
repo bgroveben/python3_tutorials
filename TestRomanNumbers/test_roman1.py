@@ -95,6 +95,14 @@ class ToRomanBadInput(unittest.TestCase):
         """
         self.assertRaises(roman1.NotIntegerError, roman1.to_roman, 0.5)
 
+    def test_from_roman_known_values(self):
+        """
+        from_roman should give known result with known input.
+        """
+        for integer, numeral in self.known_values:
+            result = roman5.from_roman(numeral)
+            self.assertEqual(integer, result)
+
 
 class OutOfRangeError(ValueError):
     pass
