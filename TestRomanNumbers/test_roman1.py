@@ -104,6 +104,17 @@ class ToRomanBadInput(unittest.TestCase):
             self.assertEqual(integer, result)
 
 
+class RoundTripCheck(unittest.TestCase):
+    def test_roundtrip(self):
+        """
+        from_roman(to_roman(n)) == n for all n
+        """
+        for integer in range(1, 4000):
+            numeral = roman5.to_roman(integer)
+            result = roman5.from_roman(numeral)
+            self.assertEqual(integer, result)
+
+
 class OutOfRangeError(ValueError):
     pass
 

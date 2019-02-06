@@ -37,4 +37,11 @@ def from_roman():
     """
     Convert a string from a Roman numeral to an integer.
     """
-    pass
+    result = 0
+    index = 0
+    for numeral, integer in roman_numeral_map:
+        while s[index:index+len(numeral)] == numeral:
+            result += integer
+            index += len(numeral)
+            print('found', numeral, 'of length', len(numeral), ', adding', integer)
+    return result
