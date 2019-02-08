@@ -73,3 +73,6 @@ def from_roman():
             index += len(numeral)
             print('found', numeral, 'of length', len(numeral), ', adding', integer)
     return result
+
+
+class InvalidRomanNumeralError(ValueError): pass
