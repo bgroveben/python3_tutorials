@@ -61,10 +61,22 @@ def to_roman(n):
             print('subtracting {0} from input, adding {1} to output'.format(integer, numeral))
     return result
 
+# Regular expression to test for valid Roman numbers.
+roman_numeral_pattern = re.compile('''
+    ^                  # beginning of string
+    M{0, 3}            # thousands place
+    (CM|CD|D?C{0,3})   # hundreds place
+    (XC|XL|L?X{0,3})   # tens place
+    (IX|IV|V?I{0,3})   # ones place
+    $                  # end of string
+    ''', re.VERBOSE)
+
 def from_roman():
     """
     Convert a string from a Roman numeral to an integer.
     """
+    if not roman_numeral_pattern.search(s):
+        raise InvalidRomanNumeralError('Invalid Roman numeral: {0}'.format(s))
     result = 0
     index = 0
     for numeral, integer in roman_numeral_map:
