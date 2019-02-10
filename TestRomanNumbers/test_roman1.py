@@ -136,7 +136,13 @@ class FromRomanBadInput(unittest.TestCase):
         """
         for s in ('IIMXCC', 'VX', 'DCM', 'CMM', 'IXIV', 'MCMC', 'XCX', 'IVI', 'MCMC', 'XCX', 'IVI', 'LM', 'LD', 'LC'):
             self.assertRaises(roman1.InvalidRomanNumeralError, roman1.from_roman, s)
-        
+
+    def testBlank(self):
+        """
+        from_roman should fail with a blank string
+        """
+        self.assertRaises(roman1.InvalidRomanNumeralError, roman1.from_roman, '')
+
 
 class OutOfRangeError(ValueError):
     pass

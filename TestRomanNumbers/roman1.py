@@ -75,16 +75,16 @@ def from_roman():
     """
     Convert a string from a Roman numeral to an integer.
     """
-    if not roman_numeral_pattern.search(s):
-        raise InvalidRomanNumeralError('Invalid Roman numeral: {0}'.format(s))
+    if not s:
+        raise InvalidRomanNumeralError('Input can not be blank')
+    if not re.search(romanNumeralPattern, s):
+        raise InvalidRomanNumeralError('Invalid Roman numeral: {}'.format(s))
     result = 0
     index = 0
-    for numeral, integer in roman_numeral_map:
+    for numeral, integer in romanNumeralMap:
         while s[index:index+len(numeral)] == numeral:
             result += integer
             index += len(numeral)
-            print('found', numeral, 'of length', len(numeral), ', adding', integer)
     return result
-
 
 class InvalidRomanNumeralError(ValueError): pass
