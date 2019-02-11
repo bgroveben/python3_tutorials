@@ -24,6 +24,8 @@ very much. DC is 600; CD is accompletely different number (400, “100 less than
 500”). CI is 101; IC is not even a valid Roman numeral (because you can't
 subtract 1 directly from 100; you would need to write it as XCIX, “10 less than
 100, then 1 less than 10”).
+
+• Don't forget about exceptions to the rules above. For example, 4 'M' characters in a row represents 4000.
 """
 
 roman_numeral_map = (('M', 1000),
@@ -46,9 +48,8 @@ def to_roman(n):
     Convert an integer to a Roman number.
     """
     # Numbers can't be less than 1 or greater than 3999
-    if not(0 < n < 4000):
-        raise OutOfRangeError("The number must be positive and less than 4000")
-
+    if not(0 < n < 5000):
+        raise OutOfRangeError("The number must be positive and less than 5000")
     if not isinstance(n, int):
         raise NotIntegerError("Only whole numbers are allowed")
 
@@ -64,7 +65,7 @@ def to_roman(n):
 # Regular expression to test for valid Roman numbers.
 roman_numeral_pattern = re.compile('''
     ^                  # beginning of string
-    M{0, 3}            # thousands place
+    M{0,4}            # thousands place
     (CM|CD|D?C{0,3})   # hundreds place
     (XC|XL|L?X{0,3})   # tens place
     (IX|IV|V?I{0,3})   # ones place
