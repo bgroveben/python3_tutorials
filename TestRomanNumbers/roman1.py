@@ -42,50 +42,53 @@ roman_numeral_map = (('M', 1000),
 ('IV', 4),
 ('I', 1))
 
+to_roman_table = [ None ]
+from_roman_table = {}
+
 
 def to_roman(n):
     """
     Convert an integer to a Roman number.
     """
     # Numbers can't be less than 1 or greater than 3999
-    if not(0 < n < 5000):
+    if not (0 < n < 5000):
         raise OutOfRangeError("The number must be positive and less than 5000")
-    if not isinstance(n, int):
+    if int(n) != n:
         raise NotIntegerError("Only whole numbers are allowed")
+        return to_roman_table[n]
 
-    result = ""
-    for numeral, integer in roman_numeral_map:
-        while n >= integer:
-            result += numeral
-            n -= integer
-            # The next line prints out each step of the translation:
-            print('subtracting {0} from input, adding {1} to output'.format(integer, numeral))
-    return result
-
-# Regular expression to test for valid Roman numbers.
-roman_numeral_pattern = re.compile('''
-    ^                  # beginning of string
-    M{0,4}            # thousands place
-    (CM|CD|D?C{0,3})   # hundreds place
-    (XC|XL|L?X{0,3})   # tens place
-    (IX|IV|V?I{0,3})   # ones place
-    $                  # end of string
-    ''', re.VERBOSE)
 
 def from_roman():
     """
     Convert a string from a Roman numeral to an integer.
     """
+    if not isinstance(s, str):
+        raise InvalidRomanNumeralError('Input must be a string')
     if not s:
-        raise InvalidRomanNumeralError('Input can not be blank')
-    if not re.search(romanNumeralPattern, s):
-        raise InvalidRomanNumeralError('Invalid Roman numeral: {}'.format(s))
-    result = 0
-    index = 0
-    for numeral, integer in romanNumeralMap:
-        while s[index:index+len(numeral)] == numeral:
-            result += integer
-            index += len(numeral)
-    return result
+        raise InvalidRomanNumeralError('Input cannot be blank')
+    if s not in from_roman_table:
+        raise InvalidRomanNumeralError('Invalid Roman number: {0}'.format(s))
+    return from_roman_table
+
+
+def build_lookup_tables():
+    def to_roman(n):
+        result = ''
+        for numeral, integer in roman_numeral_map:
+            if n >= integer:
+                result = numeral
+                n -= integer
+                break
+            if n > 0:
+                result += to_roman_table[n]
+            return result
+
+    for integer in range(1, 5000):
+        roman_numeral = to_roman(integer)
+        to_roman_table.append(roman_numeral)
+        from_roman_table[roman_numeral] = integer
+
+build_lookup_tables()
+
 
 class InvalidRomanNumeralError(ValueError): pass
